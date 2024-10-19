@@ -1,39 +1,44 @@
 <template>
   <div id="app">
-    <NavigationMenu /> <!-- Navigation menu is used here -->
-    <router-view /> <!-- Displays the components based on the current route -->
+    <!-- Conditionally render navigation only when the user is logged in -->
+    <Navigation v-if="isLoggedIn" />
+
+    <!-- Router View will display the current route's component -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import NavigationMenu from './components/Navigation.vue'; // Import Navigation component
+import Navigation from './components/Navigation.vue';
 
 export default {
   name: 'App',
   components: {
-    NavigationMenu, // Register the NavigationMenu component
+    Navigation,
+  },
+  data() {
+    return {
+      isLoggedIn: false, // Flag to track login status
+    };
+  },
+  methods: {
+    checkLoginStatus() {
+      this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    },
+  },
+  mounted() {
+    // Check login status when the app is mounted
+    this.checkLoginStatus();
+
+    // Listen for route changes and update login status
+    this.$router.beforeEach((to, from, next) => {
+      this.checkLoginStatus();
+      if (to.path !== '/login' && !this.isLoggedIn) {
+        next('/login'); // Redirect to login if not authenticated
+      } else {
+        next(); // Allow the navigation
+      }
+    });
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-a {
-  color: #42b983;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  list-style-type: none;
-}
-</style>
