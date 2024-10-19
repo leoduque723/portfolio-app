@@ -10,7 +10,7 @@
     <ul class="social-links">
       <li>
         <a href="https://www.facebook.com/leoduque723" target="_blank">
-          <img src="../assets/facebook.png" alt="Facebook Logo" class="social-icon" /> Facebook
+          <img src="../assets/Facebook.png" alt="Facebook Logo" class="social-icon" /> Facebook
         </a>
       </li>
       <li>
@@ -20,7 +20,7 @@
       </li>
       <li>
         <a href="mailto:leo723jennyl723@gmail.com">
-          <img src="../assets/email-icon.png" alt="Email Icon" class="social-icon" /> Email Me
+          <img src="../assets/email.png" alt="Email Icon" class="social-icon" /> Email Me
         </a>
       </li>
     </ul>
