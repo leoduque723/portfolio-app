@@ -1,6 +1,10 @@
 <template>
   <div class="login-page">
+    <!-- Add the image here -->
+    <img src="@/assets/Tokyo.png" alt="Tokyo Logo" class="login-image" />
+
     <h1>Login</h1>
+
     <form @submit.prevent="login">
       <label for="username">Username:</label>
       <input type="text" id="username" v-model="username" />
@@ -15,7 +19,7 @@
 
 <script>
 export default {
-  name: "LoginPage",
+  name: 'LoginPage',
   data() {
     return {
       username: '',
@@ -24,59 +28,68 @@ export default {
   },
   methods: {
     login() {
-      const hardcodedUsername = "leoduque723";
-      const hardcodedPassword = "leo723";
+      const hardcodedUsername = 'leoduque723';
+      const hardcodedPassword = 'leo723';
 
       if (this.username === hardcodedUsername && this.password === hardcodedPassword) {
-        this.$router.push("/portfolio/profile");
+        localStorage.setItem('isLoggedIn', 'true');
+        this.$router.push('/portfolio/profile');
       } else {
-        alert("Invalid credentials. Please try again.");
+        alert('Invalid credentials. Please try again.');
       }
+    },
+  },
+  mounted() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      this.$router.push('/portfolio/profile');
     }
-  }
+  },
 };
 </script>
 
 <style scoped>
+/* Login page styling */
 .login-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
-h1 {
+.login-page img.login-image {
+  width: 150px; /* Set the width of the image to make it bigger */
+  margin-bottom: 20px; /* Add some space between the image and the heading */
+}
+
+.login-page h1 {
   margin-bottom: 20px;
 }
 
-form {
+.login-page form {
   display: flex;
   flex-direction: column;
-  width: 300px;
 }
 
-label {
+.login-page label {
   margin-bottom: 5px;
 }
 
-input {
+.login-page input {
   margin-bottom: 15px;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
-button {
+.login-page button {
   padding: 10px;
   background-color: #007BFF;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
 }
 
-button:hover {
+.login-page button:hover {
   background-color: #0056b3;
 }
 </style>
