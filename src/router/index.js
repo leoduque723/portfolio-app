@@ -1,44 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginPage from '../components/LoginPage.vue';
 import ProfilePage from '../components/ProfilePage.vue';
 import ShowcasePage from '../components/ShowcasePage.vue';
-// other imports...
+import ContactPage from '../components/ContactPage.vue';
+import CreativePage from '../components/CreativePage.vue';
+import LoginPage from '../components/LoginPage.vue';
 
 const routes = [
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginPage,
-  },
-  {
-    path: '/portfolio/profile',
-    name: 'Profile',
-    component: ProfilePage,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/portfolio/showcase',
-    name: 'Showcase',
-    component: ShowcasePage,
-    meta: { requiresAuth: true },
-  },
-  // other routes...
+  { path: '/', component: LoginPage },
+  { path: '/portfolio/profile', component: ProfilePage },
+  { path: '/portfolio/showcase', component: ShowcasePage },
+  { path: '/portfolio/contact', component: ContactPage },
+  { path: '/portfolio/creative', component: CreativePage },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
-});
-
-// Navigation guard to check for authentication
-router.beforeEach((to, from, next) => {
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-  if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
-    next('/login');
-  } else {
-    next();
-  }
 });
 
 export default router;

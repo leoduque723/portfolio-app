@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: "LoginPage",
   data() {
     return {
       username: '',
@@ -24,21 +24,59 @@ export default {
   },
   methods: {
     login() {
-      const hardcodedUsername = 'leoduque723';
-      const hardcodedPassword = 'leo723';
+      const hardcodedUsername = "leoduque723";
+      const hardcodedPassword = "leo723";
 
       if (this.username === hardcodedUsername && this.password === hardcodedPassword) {
-        // Notify parent component about successful login
-        this.$emit('login', true);
-        this.$router.push('/portfolio/profile'); // Redirect to profile page
+        this.$router.push("/portfolio/profile");
       } else {
-        alert('Invalid credentials. Please try again.');
+        alert("Invalid credentials. Please try again.");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-/* Login page styling */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
 </style>
