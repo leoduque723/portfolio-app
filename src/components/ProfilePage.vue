@@ -1,7 +1,7 @@
 <template>
     <div class="profile">
       <h2>Profile: Leo Jennyl M. Duque</h2>
-      <img src="../assets/profile.jpg" alt="Profile Photo" />
+      <img src="../assets/profile pic.jpg" alt="Profile Photo" />
       <p>
         Bio: I love to watch movies and anime. I enjoy playing music on my guitar and my hobbies include playing video games and sleeping.
       </p>
